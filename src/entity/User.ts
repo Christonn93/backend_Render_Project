@@ -1,26 +1,24 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IsEmail, IsNotEmpty, Length } from 'class-validator';
+import { IsNotEmpty, IsEmail, Length } from 'class-validator';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @Column()
     @IsNotEmpty({ message: 'Name is required' })
     @Length(3, 50, { message: 'Name must be between 3 and 50 characters' })
-    name!: string;
+    name?: string;
 
     @Column({ unique: true })
     @IsEmail({}, { message: 'Invalid email address' })
-    email!: string;
+    email?: string;
 
     @Column({ default: 'default_password' })
     @IsNotEmpty({ message: 'Password is required' })
-    password!: string;
+    password?: string;
 
     @Column({ default: 'user' })
-    role!: string; 
-
-
+    role?: string;
 }
